@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo do maior e menor</title>
+    </head>
+    <body>
+        <script>
+    //input de dois jogadores diferentes.
+        var nJogador1 = prompt('numero do jogador 1');
+        nJogador1 = parseInt(nJogador1);
+
+        var nJogador2 = prompt('numero do jogador 2');
+        nJogador2 = parseInt(nJogador2);
+        
+        //verificar se os numeros são iguais
+        if(nJogador1 === nJogador2){
+            alert('voces empataram');
+        } else {
+            //além de randomizar o numero sorteado, é necessário converter para inteiro
+            var nSorteado = parseInt(Math.random() * 2);
+
+            // se o numero sorteado for 0, ganha quem escolher o numero MENOR
+            if(nSorteado === 0){
+                
+                if(nJogador1 < nJogador2){
+                    alert('ganhou o jogador 1');
+                } else {
+                    alert('ganhou o jogador 2');
+                }
+                
+            // se o numero sorteado for 1, ganha quem escolher o numero MAIOR
+            } else {
+                if(nJogador1 > nJogador2){
+                    alert('ganhou o jogador 1');
+                } else {
+                    alert('ganhou o jogador 2')
+                }
+            }
+
+            
+        }
+    </body>
+    
+    </script>
+</html>
