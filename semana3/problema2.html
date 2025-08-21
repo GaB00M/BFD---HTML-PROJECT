@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+ <title>Cadastro de pessoas - apenas input de informações</title>
+</head>
+<body>
+    <input type="text" placeholder="Digite seu nome" id="nome">
+    <input type="text" placeholder="Digite sua idade" id="idade">
+     <button onclick="adicionar()">Adicionar informações</button>
+     <p id="info"> </p>
+</body>
+    <script>
+        var pessoas=[];
+        function adicionar(){
+        var nome = document.getElementById("nome").value;
+        var idade = document.getElementById("idade").value;
+        var pessoa = {nome, idade};
+        pessoas.push(pessoa);
+        document.getElementById("nome").value = "";
+        document.getElementById("idade").value = "";
+        document.getElementById("info").innerHTML = "O nome "+nome+" e a idade "+idade+" foi adicionado";
+    }
+    </script>
+
+</html>
