@@ -1,0 +1,33 @@
+<!--Crie uma página HTML para um CRUD (create, read, update, delete) de usuários (alunos) para nossa disciplina, fazendo uso de recursos de estilo CSS. 
+Ao final, insira o seu material no seu git pessoal e compartilhe como resposta a esta atividade (a última versão que tenha feito upload do código 
+no git terá data limitada à data de entrega definida nesta atividade).-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+</head>
+    <p> CRUD </p>
+    <input type="text" placeholder="Digite seu nome" id="nome">
+    <input type="text" placeholder="Digite seu e-mail" id="e-mail">
+    <input type="text" placeholder="Digite seu número de telefone" id="telefone">
+    <button onclick="adicionar()">Adicionar informações</button>
+    <p id="info"> </p>
+    <script>
+        var pessoas=[];
+        function adicionar(){
+        var nome = document.getElementById("nome").value;
+        var email = document.getElementById("e-mail").value;
+        var telefone = document.getElementById("telefone").value;
+        var pessoa = {nome, email,telefone};
+        pessoas.push(pessoa);
+        document.getElementById("nome").value = "";
+        document.getElementById("e-mail").value = "";
+        document.getElementById("telefone").value = "";
+        document.getElementById("info").innerHTML = "O nome "+nome+" e a forma de contato, "+email+" e "+telefone+" foi adicionado.";
+        }
+    </script>
+
+</body>
+</html>
