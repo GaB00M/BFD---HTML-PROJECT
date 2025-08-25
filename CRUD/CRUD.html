@@ -1,33 +1,149 @@
-<!--Crie uma página HTML para um CRUD (create, read, update, delete) de usuários (alunos) para nossa disciplina, fazendo uso de recursos de estilo CSS. 
-Ao final, insira o seu material no seu git pessoal e compartilhe como resposta a esta atividade (a última versão que tenha feito upload do código 
-no git terá data limitada à data de entrega definida nesta atividade).-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            text-align: center;
+        }
+
+        button {
+            background-color: rosybrown;
+            padding: 20px 25px;
+            margin: 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        input {
+            background-color: whitesmoke;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 20px;
+            border: 3px solid palevioletred;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: whitesmoke;
+            margin: 20px;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+    </style>
 </head>
-    <p> CRUD </p>
+<body>
+    <h2 style="font-size: 50px; color:palevioletred;;">CRUD</h2>
+    <!-- Formulário -->
     <input type="text" placeholder="Digite seu nome" id="nome">
-    <input type="text" placeholder="Digite seu e-mail" id="e-mail">
+    <input type="text" placeholder="Digite seu e-mail" id="email">
     <input type="text" placeholder="Digite seu número de telefone" id="telefone">
     <button onclick="adicionar()">Adicionar informações</button>
-    <p id="info"> </p>
+
+    <p id="info"></p>
+    <ul id="lista_pessoas"></ul>
+
+    <!-- Botões de CRUD -->
+    <button onclick="novoCadastro()">Novo Cadastro</button>
+    <button onclick="Ler()">Ver cadastrados</button>
+    <button onclick="Editar()">Editar Selecionado</button>
+    <button onclick="Deletar()">Deletar Selecionado</button>
+
     <script>
-        var pessoas=[];
+        var pessoas = [];
+        var indiceSelecionado = -1; 
+
         function adicionar(){
-        var nome = document.getElementById("nome").value;
-        var email = document.getElementById("e-mail").value;
-        var telefone = document.getElementById("telefone").value;
-        var pessoa = {nome, email,telefone};
-        pessoas.push(pessoa);
-        document.getElementById("nome").value = "";
-        document.getElementById("e-mail").value = "";
-        document.getElementById("telefone").value = "";
-        document.getElementById("info").innerHTML = "O nome "+nome+" e a forma de contato, "+email+" e "+telefone+" foi adicionado.";
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var telefone = document.getElementById("telefone").value;
+
+            if (!nome || !email || !telefone) return alert("Preencha todos os campos!");
+
+            var pessoa = {nome, email, telefone};
+            pessoas.push(pessoa);
+
+            limparCampos();
+            document.getElementById("info").innerHTML = 
+                "O <b>"+nome+"</b> foi adicionado.";
+            Ler();
+        }
+
+        function Ler() {
+            var lista = document.getElementById("lista_pessoas");
+            lista.innerHTML = "";
+
+            pessoas.forEach(function (pessoa, index) {
+                var item = document.createElement("li");
+                item.textContent = pessoa.nome + " - " + pessoa.email + " - " + pessoa.telefone;
+                item.style.cursor = "pointer";
+
+                item.onclick = function () {
+                    indiceSelecionado = index;
+                    document.getElementById("info").innerHTML =
+                        "Selecionado: <b>" + pessoa.nome + "</b>";
+                };
+
+                lista.appendChild(item);
+            });
+
+            if (pessoas.length === 0) {
+                lista.innerHTML = "<li>Nenhum aluno cadastrado.</li>";
+            }
+        }
+
+        function Editar() {
+            if(indiceSelecionado === -1){
+                return alert("Selecione uma pessoa para editar!");
+            } 
+
+            var novoNome = prompt("Digite o novo nome:", pessoas[indiceSelecionado].nome);
+            var novoEmail = prompt("Digite o novo e-mail:", pessoas[indiceSelecionado].email);
+            var novoTelefone = prompt("Digite o novo telefone:", pessoas[indiceSelecionado].telefone);
+
+            if (novoNome && novoEmail && novoTelefone) {
+                pessoas[indiceSelecionado] = {
+                    nome: novoNome,
+                    email: novoEmail,
+                    telefone: novoTelefone
+                };
+                document.getElementById("info").innerHTML = "Informações atualizadas.";
+                Ler();
+            }
+        }    
+
+        function Deletar() {
+            if(indiceSelecionado === -1){
+                return alert("Selecione uma pessoa para deletar!");
+            }
+            if (confirm("Tem certeza que deseja excluir este cadastro?")) {
+                pessoas.splice(indiceSelecionado, 1);
+                indiceSelecionado = -1;
+                document.getElementById("info").innerHTML = "Cadastro excluído.";
+                Ler();
+            }
+        }
+
+        function novoCadastro() {
+            indiceSelecionado = -1;
+            limparCampos();
+            document.getElementById("info").innerHTML = "Preencha os campos para adicionar um novo cadastro.";
+        }
+
+        function limparCampos() {
+            document.getElementById("nome").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("telefone").value = "";
         }
     </script>
-
 </body>
 </html>
