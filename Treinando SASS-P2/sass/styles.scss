@@ -1,0 +1,66 @@
+$cor-principal: #f8bbd0;
+$cor-destaque: #ec407a;
+$cor-secundaria: #f48fb1;
+$espacamento: 20px;
+
+@mixin card-estilizado($raio, $sombra, $cor) {
+    border-radius: $raio;
+    box-shadow: $sombra;
+    border-top: 6px solid $cor;
+}
+
+%titulo-card {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: $cor-destaque;
+    margin-bottom: 8px;
+}
+
+%texto-card {
+    font-size: 1rem;
+    color: black;
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $espacamento;
+    padding: $espacamento;
+    background: #fff0f6;
+    min-height: 100vh;
+
+    .card {
+        background: white;
+        padding: $espacamento;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+
+        h3 {
+            @extend %titulo-card;
+        }
+
+        p {
+            @extend %texto-card;
+        }
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 6px 16px rgba(236, 64, 122, 0.3);
+        }
+    }
+
+    .categoria1 {
+        @include card-estilizado(15px, 0 4px 10px rgba(0, 0, 0, 0.1), $cor-destaque);
+    }
+
+    .categoria2 {
+        @include card-estilizado(15px, 0 4px 10px rgba(0, 0, 0, 0.1), $cor-destaque);
+    }
+
+    .categoria3 {
+        @include card-estilizado(15px, 0 4px 10px rgba(0, 0, 0, 0.1), $cor-destaque);
+    }
+
+}

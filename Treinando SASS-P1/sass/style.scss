@@ -1,0 +1,54 @@
+
+$primary-color: #ac05c2;
+$secondary-color: pink;
+$font-size: 18px;
+
+%clickable {
+  font-size: $font-size;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@mixin box-style($radius, $shadow) {
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+.menu {
+  background: $primary-color;
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+
+    li {
+      margin: 0 15px;
+
+      a {
+        @extend %clickable;
+        color: white;
+        padding: 5px;
+
+        &:hover {
+          color: $secondary-color;
+          border-bottom: 2px solid $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+.btn {
+  @extend %clickable;
+  background: $secondary-color;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+
+  @include box-style(10px, 2px 2px 5px rgba(0,0,0,0.3));
+
+  }
+
