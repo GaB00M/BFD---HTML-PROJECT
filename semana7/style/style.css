@@ -1,7 +1,97 @@
+/* 355E3B E 2A4A2F,F6E5C1,B5BE6A,E3A6A1 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color:rgb(209, 165, 209);
-    color: pink;
-    text-align: center;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background-color: #355E3B;
+  color: #F6E5C1; 
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header, .categorias {
+  background-color: #2a4a2f;
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.categorias ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.categorias ul li a {
+  color: #F6E5C1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.categorias ul li a:hover {
+  color: #B5BE6A;
+}
+
+/* Container */
+.container, .perfil, #s {
+  max-width: 900px;
+  margin: 120px auto 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Perfil */
+.fotoPessoal {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #E3A6A1;
+  margin-bottom: 15px;
+}
+
+.nome {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #E3A6A1; 
+}
+
+.idade {
+  font-size: 1.2rem;
+  color: #B5BE6A; 
+}
+
+/* Seções */
+h2 {
+  color: #E3A6A1;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 15px;
+  color: #F6E5C1; 
+}
+
+/* Rodapé */
+.rodape {
+  background-color: #2a4a2f;
+  padding: 20px;
+  text-align: center;
+}
+
+.rodape img {
+  width: 35px;
+  margin: 0 10px;
+  transition: transform 0.3s;
+}
+
+.rodape img:hover {
+  transform: scale(1.2);
 }
